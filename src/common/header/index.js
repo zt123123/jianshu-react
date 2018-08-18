@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
-import { searchFocus, searchBlur } from "./store/actionCreaters";
+import { searchFocus, searchBlur, getList } from "./store/actionCreaters";
 import {
   HeaderWrapper,
   Logo,
@@ -20,8 +20,8 @@ import {
 
 
 class Header extends Component {
-  getAreaList(show) {
-    if (show) {
+  getAreaList() {
+    if (this.props.focused) {
       return (
         <SearchInfo>
           <SearchInfoTitle>
@@ -29,13 +29,9 @@ class Header extends Component {
           <SearchInfoSwitch>换一批</SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
-            <SearchInfoItem>教育</SearchInfoItem>
-            <SearchInfoItem>教育</SearchInfoItem>
-            <SearchInfoItem>教育</SearchInfoItem>
-            <SearchInfoItem>教育</SearchInfoItem>
-            <SearchInfoItem>教育</SearchInfoItem>
-            <SearchInfoItem>教育</SearchInfoItem>
-            <SearchInfoItem>教育</SearchInfoItem>
+            {
+              this.props.list.map(item=><SearchInfoItem key={item}>{item}</SearchInfoItem>)
+            }
           </SearchInfoList>
         </SearchInfo>
       )
@@ -59,7 +55,7 @@ class Header extends Component {
               </NavSearch>
             </CSSTransition>
             <i className={this.props.focused ? "iconfont focused" : 'iconfont'} >&#xe614;</i>
-            {this.getAreaList(this.props.focused)}
+            {this.getAreaList()}
           </SearchWrapper>
         </Nav>
         <Addtion>
@@ -76,13 +72,15 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    focused: state.getIn(["header", "focused"])
+    focused: state.getIn(["header", "focused"]),
+    list: state.getIn(["header", "list"])
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     handleFocus: () => {
+      dispatch(getList())
       dispatch(searchFocus())
     },
     handleBlur: () => {
