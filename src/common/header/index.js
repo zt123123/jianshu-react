@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
-import { searchFocus, searchBlur, getList } from "./store/actionCreaters";
+import { searchFocus, searchBlur, getList, mouseEnter, mouseLeave, changeList } from "./store/actionCreaters";
 import {
   HeaderWrapper,
   Logo,
@@ -21,23 +21,36 @@ import {
 
 class Header extends Component {
   getAreaList() {
-    if (this.props.focused) {
+    const { focused, list, page, totalPage,mouseIn, handleMouseEnter, handleMouseLeave, changeList } = this.props
+    const newList = list.toJS()
+    const pageList = [];
+    console.log(page);
+
+    if (newList.length) {
+      for (let i = (page - 1) * 10; i < page * 10; i++) {
+        pageList.push(
+          <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+        )
+      }
+    }
+    console.log(pageList);
+
+    if (focused || mouseIn) {
       return (
-        <SearchInfo>
+        <SearchInfo onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <SearchInfoTitle>
             热门搜索
-          <SearchInfoSwitch>换一批</SearchInfoSwitch>
+          <SearchInfoSwitch onClick={() => changeList(page, totalPage)}>换一批</SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
-            {
-              this.props.list.map(item=><SearchInfoItem key={item}>{item}</SearchInfoItem>)
-            }
+            {pageList}
           </SearchInfoList>
         </SearchInfo>
       )
     }
   }
   render() {
+    const { focused, handleFocus, handleBlur } = this.props
     return (
       <HeaderWrapper>
         <Logo />
@@ -47,14 +60,14 @@ class Header extends Component {
           <NavItem className="right">登陆</NavItem>
           <NavItem className="right"><i className="iconfont">&#xe636;</i></NavItem>
           <SearchWrapper>
-            <CSSTransition in={this.props.focused} timeout={200} classNames="slide">
-              <NavSearch className={this.props.focused ? "focused" : ''}
-                onFocus={this.props.handleFocus}
-                onBlur={this.props.handleBlur}
+            <CSSTransition in={focused} timeout={200} classNames="slide">
+              <NavSearch className={focused ? "focused" : ''}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
               >
               </NavSearch>
             </CSSTransition>
-            <i className={this.props.focused ? "iconfont focused" : 'iconfont'} >&#xe614;</i>
+            <i className={focused ? "iconfont focused" : 'iconfont'} >&#xe614;</i>
             {this.getAreaList()}
           </SearchWrapper>
         </Nav>
@@ -73,7 +86,10 @@ class Header extends Component {
 const mapStateToProps = (state) => {
   return {
     focused: state.getIn(["header", "focused"]),
-    list: state.getIn(["header", "list"])
+    list: state.getIn(["header", "list"]),
+    page: state.getIn(["header", "page"]),
+    totalPage: state.getIn(["header", "totalPage"]),
+    mouseIn: state.getIn(["header", "mouseIn"])
   }
 }
 
@@ -85,6 +101,19 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleBlur: () => {
       dispatch(searchBlur())
+    },
+    changeList: (page, totalPage) => {
+      if (page < totalPage) {
+        dispatch(changeList(page + 1))
+      } else {
+        dispatch(changeList(1))
+      }
+    },
+    handleMouseEnter: () => {
+      dispatch(mouseEnter())
+    },
+    handleMouseLeave: () => {
+      dispatch(mouseLeave())
     }
   }
 }
