@@ -21,10 +21,9 @@ import {
 
 class Header extends Component {
   getAreaList() {
-    const { focused, list, page, totalPage,mouseIn, handleMouseEnter, handleMouseLeave, changeList } = this.props
+    const { focused, list, page, totalPage, mouseIn, handleMouseEnter, handleMouseLeave, changeList } = this.props
     const newList = list.toJS()
     const pageList = [];
-    console.log(page);
 
     if (newList.length) {
       for (let i = (page - 1) * 10; i < page * 10; i++) {
@@ -33,14 +32,18 @@ class Header extends Component {
         )
       }
     }
-    console.log(pageList);
 
     if (focused || mouseIn) {
       return (
         <SearchInfo onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <SearchInfoTitle>
             热门搜索
-          <SearchInfoSwitch onClick={() => changeList(page, totalPage)}>换一批</SearchInfoSwitch>
+          <SearchInfoSwitch
+              onClick={() => changeList(page, totalPage, this.spin)}
+            >
+              <i ref={spin => this.spin = spin} className="iconfont spin">&#xe851;</i>
+              换一批
+          </SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
             {pageList}
@@ -50,7 +53,7 @@ class Header extends Component {
     }
   }
   render() {
-    const { focused, handleFocus, handleBlur } = this.props
+    const { focused, handleFocus, handleBlur, list } = this.props
     return (
       <HeaderWrapper>
         <Logo />
@@ -62,12 +65,12 @@ class Header extends Component {
           <SearchWrapper>
             <CSSTransition in={focused} timeout={200} classNames="slide">
               <NavSearch className={focused ? "focused" : ''}
-                onFocus={handleFocus}
+                onFocus={() => handleFocus(list)}
                 onBlur={handleBlur}
               >
               </NavSearch>
             </CSSTransition>
-            <i className={focused ? "iconfont focused" : 'iconfont'} >&#xe614;</i>
+            <i className={focused ? "iconfont zoom focused" : 'iconfont zoom'} >&#xe614;</i>
             {this.getAreaList()}
           </SearchWrapper>
         </Nav>
@@ -95,14 +98,24 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleFocus: () => {
-      dispatch(getList())
+    handleFocus: (list) => {
+      (list.size === 0) && dispatch(getList());
       dispatch(searchFocus())
     },
     handleBlur: () => {
       dispatch(searchBlur())
     },
-    changeList: (page, totalPage) => {
+    changeList: (page, totalPage, spin) => {
+      let angle = spin.style.transform.replace(/[^0-9]/ig, "")
+      if (!angle) {
+        angle = 0
+      } else {
+        angle = parseInt(angle, 10)
+      }
+      console.log(angle);
+      
+      spin.style.transform = "rotate(" + (angle+360) + "deg)"
+
       if (page < totalPage) {
         dispatch(changeList(page + 1))
       } else {
