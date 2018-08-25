@@ -8,6 +8,7 @@ const searchList = (data) => ({
     totalPage: Math.ceil(data.length / 10)
 })
 
+
 export const searchFocus = () => ({
     type: SEARCH_FOCUS
 })
@@ -31,7 +32,7 @@ export const mouseLeave = () => ({
 
 export const getList = () => {
     return (dispatch) => {
-        axios.get("http://localhost:3000")
+        axios.get("http://localhost:3000/api/tag")
             .then(data => {
                 dispatch(searchList(data.data))
             })

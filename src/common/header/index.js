@@ -112,9 +112,7 @@ const mapDispatchToProps = (dispatch) => {
       } else {
         angle = parseInt(angle, 10)
       }
-      console.log(angle);
-      
-      spin.style.transform = "rotate(" + (angle+360) + "deg)"
+      spin.style.transform = "rotate(" + (angle + 360) + "deg)"
 
       if (page < totalPage) {
         dispatch(changeList(page + 1))
