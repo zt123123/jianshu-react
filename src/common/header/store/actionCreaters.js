@@ -1,6 +1,7 @@
 import { SEARCH_FOCUS, SEARCH_BLUR, SEARCH_LIST, MOUSE_LEAVE, MOUSE_ENTER, CHANGE_LIST } from "./actionTypes";
 import { fromJS } from "immutable"
 import axios from "axios";
+import { API_PREFIX } from "../../../static/config";
 
 const searchList = (data) => ({
     type: SEARCH_LIST,
@@ -32,7 +33,7 @@ export const mouseLeave = () => ({
 
 export const getList = () => {
     return (dispatch) => {
-        axios.get("http://localhost:3000/api/tag")
+        axios.get(`${API_PREFIX}tag`)
             .then(data => {
                 dispatch(searchList(data.data))
             })

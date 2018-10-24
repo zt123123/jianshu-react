@@ -99,3 +99,15 @@ export const WriterWrapper=styled.div`
     text-align: center;
     border-radius:3px;
 `
+
+export const LoadMore=styled.div`
+    width:100%;
+    height:40px;
+    line-height:40px;
+    background:#a5a5a5;
+    text-align:center;
+    border-radius:20px;
+    color:#fff;
+    margin:20px auto;
+    cursor:pointer;
+`
