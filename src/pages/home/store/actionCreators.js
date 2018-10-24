@@ -1,4 +1,4 @@
-import { HOME_LIST, ADD_HOME_LIST } from "./actionTypes";
+import { HOME_LIST, ADD_HOME_LIST, CHANGE_SCROLL_SHOW } from "./actionTypes";
 
 import axios from "axios";
 import { fromJS } from "immutable";
@@ -13,6 +13,11 @@ export const addhomeList = (data, page) => ({
     type: ADD_HOME_LIST,
     data: fromJS(data),
     page
+})
+
+export const changeScroll = (flag) => ({
+    type: CHANGE_SCROLL_SHOW,
+    flag
 })
 
 export const getHomeData = () => {
@@ -31,7 +36,7 @@ export const getMoreLists = (page) => {
     return (dispatch) => {
         axios.get(`${API_PREFIX}loadMore?page=${page}`)
             .then(data => {
-                dispatch(addhomeList(data.data.data, page+1))
+                dispatch(addhomeList(data.data.data, page + 1))
             })
             .catch(err => {
                 console.log(err);
