@@ -17,6 +17,11 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/detail/:id" component={Detail}></Route>
+            <footer className="footer">
+              <p>
+                <a target="_blank" href="http://www.miitbeian.gov.cn/">鄂ICP备18024171号</a>
+              </p>
+            </footer>
           </div>
         </BrowserRouter>
       </Provider>
