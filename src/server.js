@@ -49,20 +49,20 @@ http.createServer((req, res) => {
         res_desc: "success",
         data: {
             topicList: [{
-                id: 1,
-                title: "音乐",
-                imgUrl: "https://upload.jianshu.io/collections/images/4/sy_20091020135145113016.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64"
-            },
-            {
-                id: 2,
-                title: "电影",
-                imgUrl: "https://upload.jianshu.io/collections/images/21/20120316041115481.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64"
-            },
-            {
-                id: 3,
-                title: "手绘",
-                imgUrl: "https://upload.jianshu.io/collections/images/283250/%E6%BC%AB%E7%94%BB%E4%B8%93%E9%A2%98.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64"
-            }
+                    id: 1,
+                    title: "音乐",
+                    imgUrl: "https://upload.jianshu.io/collections/images/4/sy_20091020135145113016.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64"
+                },
+                {
+                    id: 2,
+                    title: "电影",
+                    imgUrl: "https://upload.jianshu.io/collections/images/21/20120316041115481.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64"
+                },
+                {
+                    id: 3,
+                    title: "手绘",
+                    imgUrl: "https://upload.jianshu.io/collections/images/283250/%E6%BC%AB%E7%94%BB%E4%B8%93%E9%A2%98.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64"
+                }
             ],
             articleList: [{
                 id: 1,
@@ -81,13 +81,13 @@ http.createServer((req, res) => {
                 imgUrl: "https://upload-images.jianshu.io/upload_images/6449074-f1f994168f783e86.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240"
             }],
             recommendList: [{
-                id: 1,
-                imgUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535208043663&di=1fe11c239f8cc649a804945976b66484&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F14%2F62%2F19%2F33758PICrJ8_1024.png"
-            },
-            {
-                id: 2,
-                imgUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535208043663&di=1fe11c239f8cc649a804945976b66484&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F14%2F62%2F19%2F33758PICrJ8_1024.png"
-            }
+                    id: 1,
+                    imgUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535208043663&di=1fe11c239f8cc649a804945976b66484&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F14%2F62%2F19%2F33758PICrJ8_1024.png"
+                },
+                {
+                    id: 2,
+                    imgUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535208043663&di=1fe11c239f8cc649a804945976b66484&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F14%2F62%2F19%2F33758PICrJ8_1024.png"
+                }
             ]
         }
     }
@@ -112,6 +112,21 @@ http.createServer((req, res) => {
         }]
     }
 
+    let detail = {
+        "success": "ok",
+        "data": {
+            id: 1,
+            title: "123465789",
+            content: `
+        	    <img src="https://upload-images.jianshu.io/upload_images/11971454-67c034b302459f49.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/435/format/webp" alt="" />
+        	                    <p>1234651234654612346512346546123465123465461234651234654612346512346546</p>
+        	                    <p>1234651234654612346512346546123465123465461234651234654612346512346546</p>
+        	                    <p>1234651234654612346512346546123465123465461234651234654612346512346546</p>
+        	                    <p>1234651234654612346512346546123465123465461234651234654612346512346546</p>
+        	    `
+        }
+    }
+
     if (req.url == "/") {
         res.end(JSON.stringify({
             code: 0,
@@ -128,6 +143,11 @@ http.createServer((req, res) => {
     if (path.indexOf("loadMore") > -1) {
         console.log(list);
         res.end(JSON.stringify(loadMoreData))
+    }
+
+    if (path.indexOf("detail") > -1) {
+        console.log(list);
+        res.end(JSON.stringify(detail))
     }
 
 
