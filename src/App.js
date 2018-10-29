@@ -20,10 +20,10 @@ class App extends Component {
             <Route exact path="/detail/:id" component={Detail}></Route>
             <footer className="footer">
               <div className="beiwrapper">
-                <a className="beiurl" style={{verticalAlign:"top",marginRight:"20px"}} target="_blank" href="http://www.miitbeian.gov.cn/">鄂ICP备18024171号</a>
+                <a className="beiurl" style={{verticalAlign:"top",marginRight:"20px"}} target="_blank" rel="noopener noreferrer" href="http://www.miitbeian.gov.cn/">鄂ICP备18024171号</a>
                 
-                <img src={PoliceLogo} />
-                <a className="beiurl" target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102002849">
+                <img src={PoliceLogo} alt="" />
+                <a className="beiurl" target="_blank" rel="noopener noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102002849">
                   <p className="beinumber">鄂公网安备 42011102002849号</p>
                 </a>
                 
