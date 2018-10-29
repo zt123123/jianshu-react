@@ -19,8 +19,8 @@ after_success:
 - echo -e "User root\n\tHost jianshu\n\tHostName 39.108.170.7\n\tPort 22\n\tIdentityFile
   ~/.ssh/jianshu\n\tProtocol 2\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 - chmod 644 ~/.ssh/config
-- scp -r build jianshu:/usr/home/wwwroot/
-- ssh jianshu 'cd /usr/home/wwwroot/ && rm -rf spa && mv build spa'
+- scp -r build jianshu:/home/wwwroot/
+- ssh jianshu 'cd /home/wwwroot/ && rm -rf spa && mv build spa'
 before_install:
 - openssl aes-256-cbc -K $encrypted_23e9a859447d_key -iv $encrypted_23e9a859447d_iv
   -in jianshu.enc -out ~/.ssh/jianshu -d
