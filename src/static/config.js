@@ -1,2 +1,2 @@
 const PORT = 3001
-export const API_PREFIX = `http://localhost:${PORT}/api/`
+export const API_PREFIX = `https://api.nodeveloper.top/`

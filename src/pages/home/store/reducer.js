@@ -4,7 +4,26 @@ import { fromJS } from "immutable";
 const defaultState = fromJS({
     topicList: [],
     articleList: [],
-    recommendList: [],
+    recommendList: [{
+        id: 1,
+        imgUrl: "7.png"
+    },
+    {
+        id: 2,
+        imgUrl: "30.png"
+    },
+    {
+        id: 3,
+        imgUrl: "jianquan.png"
+    },
+    {
+        id: 4,
+        imgUrl: "xuetang.png"
+    },
+    {
+        id: 5,
+        imgUrl: "youxian.png"
+    }],
     articlePage: 1,
     showScroll: false
 })
@@ -13,7 +32,7 @@ const homeList = (state, action) => {
     return state.merge({
         "topicList": fromJS(action.data.topicList),
         "articleList": fromJS(action.data.articleList),
-        "recommendList": fromJS(action.data.recommendList)
+        // "recommendList": fromJS(action.data.recommendList)
     })
 }
 

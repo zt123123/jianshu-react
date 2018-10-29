@@ -5,6 +5,7 @@ import store from "./store";
 import Header from './common/header';
 import Home from './pages/home';
 import Detail from './pages/detail/loadable';
+import PoliceLogo from "./static/police.jpg";
 
 import './App.css';
 
@@ -18,9 +19,15 @@ class App extends Component {
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/detail/:id" component={Detail}></Route>
             <footer className="footer">
-              <p>
-                <a target="_blank" href="http://www.miitbeian.gov.cn/">鄂ICP备18024171号</a>
-              </p>
+              <div className="beiwrapper">
+                <a className="beiurl" style={{verticalAlign:"top",marginRight:"20px"}} target="_blank" href="http://www.miitbeian.gov.cn/">鄂ICP备18024171号</a>
+                
+                <img src={PoliceLogo} />
+                <a className="beiurl" target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102002849">
+                  <p className="beinumber">鄂公网安备 42011102002849号</p>
+                </a>
+                
+              </div>
             </footer>
           </div>
         </BrowserRouter>

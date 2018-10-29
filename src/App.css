@@ -14,3 +14,20 @@ a:link,a:visited{
 a:hover{
   cursor: pointer
 }
+.beiwrapper{
+  margin:0 auto;
+  padding:20px 0;
+}
+.beiurl{
+  display:inline-block;
+  text-decoration:none;
+  height:20px;
+  line-height:20px;
+}
+.beinumber{
+  float:left;
+  height:20px;
+  line-height:20px;
+  margin: 0px 0px 0px 5px; 
+  color:#939393;
+}
