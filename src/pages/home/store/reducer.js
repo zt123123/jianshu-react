@@ -6,23 +6,23 @@ const defaultState = fromJS({
     articleList: [],
     recommendList: [{
         id: 1,
-        imgUrl: "7.png"
+        imgUrl: "https://static.nodeveloper.top/img/7_day.png"
     },
     {
         id: 2,
-        imgUrl: "30.png"
+        imgUrl: "https://static.nodeveloper.top/img/7_day.png"
     },
     {
         id: 3,
-        imgUrl: "jianquan.png"
+        imgUrl: "https://static.nodeveloper.top/img/banquan.png"
     },
     {
         id: 4,
-        imgUrl: "xuetang.png"
+        imgUrl: "https://static.nodeveloper.top/img/youxian.png"
     },
     {
         id: 5,
-        imgUrl: "youxian.png"
+        imgUrl: "https://static.nodeveloper.top/img/xuetang.png"
     }],
     articlePage: 1,
     showScroll: false
