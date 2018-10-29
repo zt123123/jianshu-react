@@ -10,7 +10,7 @@ const defaultState = fromJS({
     },
     {
         id: 2,
-        imgUrl: "https://static.nodeveloper.top/img/7_day.png"
+        imgUrl: "https://static.nodeveloper.top/img/30_day.png"
     },
     {
         id: 3,
