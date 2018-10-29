@@ -6,7 +6,7 @@ export default class Writer extends PureComponent {
     render() {
         return (
             <WriterWrapper>
-                Writer
+                Writer test travis
             </WriterWrapper>
         )
     }
