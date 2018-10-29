@@ -14,9 +14,6 @@ cache:
 addons:
   ssh_known_hosts:
   - 39.108.170.7
-before_install:
-- openssl aes-256-cbc -K $encrypted_1e391dbda4f1_key -iv $encrypted_1e391dbda4f1_iv
-  -in jianshu.enc -out ~/.ssh/jianshu -d
 after_success:
 - chmod 600 ~/.ssh/jianshu
 - echo -e "User root\n\tHost jianshu\n\tHostName 39.108.170.7\n\tPort 22\n\tIdentityFile
@@ -24,3 +21,6 @@ after_success:
 - chmod 644 ~/.ssh/config
 - scp -r build jianshu:/usr/home/wwwroot/
 - ssh jianshu 'cd /usr/home/wwwroot/ && rm -rf spa && mv build spa'
+before_install:
+- openssl aes-256-cbc -K $encrypted_23e9a859447d_key -iv $encrypted_23e9a859447d_iv
+  -in jianshu.enc -out ~\/.ssh/jianshu -d
