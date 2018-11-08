@@ -28,7 +28,7 @@ class App extends Component {
                 </a>
                 
               </div>
-              	<span>友情链接</span><a rel="noopener noreferrer" href="https://m.kuaidi100.com/" target="_blank">快递查询</a>
+              	<span className="friendLink">友情链接</span><a rel="noopener noreferrer" href="https://m.kuaidi100.com/" target="_blank">快递查询</a>
               <div>
               </div>
             </footer>
