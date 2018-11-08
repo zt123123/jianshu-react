@@ -28,6 +28,9 @@ class App extends Component {
                 </a>
                 
               </div>
+              	<span>友情链接</span><a href="https://m.kuaidi100.com/" target="_blank">快递查询</a>
+              <div>
+              </div>
             </footer>
           </div>
         </BrowserRouter>
