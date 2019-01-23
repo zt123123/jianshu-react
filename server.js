@@ -3,7 +3,7 @@ var url = require('url');
 var util = require('util');
 
 http.createServer((req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*")
+    // res.setHeader("Access-Control-Allow-Origin", "*")
     res.setHeader("Access-Control-Allow-Headers", "*")
     res.setHeader("Content-Type", "application/json;charset=utf-8")
     var params = url.parse(req.url, true).query;

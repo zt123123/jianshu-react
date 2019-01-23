@@ -74,8 +74,10 @@ module.exports = {
         .replace(/\\/g, '/'),
   },
   externals: {
-    React: 'react',
-    ReactDOM: 'react-dom',
+    // React: 'react',
+    // ReactDOM: 'react-dom',
+    'react':'React',
+    'react-dom':"ReactDOM",
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
